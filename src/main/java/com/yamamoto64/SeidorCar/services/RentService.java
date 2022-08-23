@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.yamamoto64.SeidorCar.domain.Rent;
 import com.yamamoto64.SeidorCar.repositories.RentRepository;
+import com.yamamoto64.SeidorCar.services.exceptions.RentException;
 
 @Service
 public class RentService {
@@ -17,7 +18,8 @@ public class RentService {
 
 	public boolean isVehicleAvailable(Rent obj) {
 		for (Rent contract : findAll()) {
-			if (obj.getVehicle().equals(contract.getVehicle()) && contract.getLastDate() == null) {
+			if (obj.getVehicle().equals(contract.getVehicle()) 
+					&& contract.getLastDate() == null) {
 				return false;
 			}
 			if (obj.getVehicle().equals(contract.getVehicle())
@@ -36,7 +38,7 @@ public class RentService {
 			obj = rentRepository.save(obj);
 			return obj;
 		} else {
-			return null;
+			throw new RentException("O veiculo solicitado " + obj.getVehicle() + " já está sendo utilizado");
 		}
 
 	}

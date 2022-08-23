@@ -72,7 +72,7 @@ public class Vehicle implements Serializable{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Placa: ");
+		builder.append("[Placa: ");
 		builder.append(id);
 		builder.append(", color=");
 		builder.append(color);
