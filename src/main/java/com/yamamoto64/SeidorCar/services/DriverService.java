@@ -31,6 +31,11 @@ public class DriverService {
 		return obj;
 	}
 	
+	public void delete (Long id) {
+		findById(id);
+		driverRepository.deleteById(id);
+	}
+	
 	public Driver insert(Driver obj) {
 		obj.setId(null);
 		obj = driverRepository.save(obj);

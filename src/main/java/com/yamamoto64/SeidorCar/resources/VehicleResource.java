@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,12 @@ public class VehicleResource {
 	public ResponseEntity<?> findById(@PathVariable Long id) {
 		Optional<Vehicle> obj = vehicleService.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete (@PathVariable Long id) {
+		vehicleService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 
 	@PostMapping

@@ -31,6 +31,11 @@ public class VehicleService {
 		return obj;		
 	}
 	
+	public void delete (Long id) {
+		findById(id);
+		vehicleRepository.deleteById(id);
+	}
+	
 	public Vehicle insert(Vehicle obj) {
 		obj.setId(null);
 		obj = vehicleRepository.save(obj);
