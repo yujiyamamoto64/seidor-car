@@ -7,7 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.yamamoto64.SeidorCar.domain.Driver;
 import com.yamamoto64.SeidorCar.domain.Vehicle;
+import com.yamamoto64.SeidorCar.repositories.DriverRepository;
 import com.yamamoto64.SeidorCar.repositories.VehicleRepository;
 
 @SpringBootApplication
@@ -18,7 +20,10 @@ public class SeidorCarApplication implements CommandLineRunner{
 	}
 	
 	@Autowired
-	VehicleRepository vehicleRepository;
+	private VehicleRepository vehicleRepository;
+	
+	@Autowired
+	private DriverRepository driverRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -27,7 +32,12 @@ public class SeidorCarApplication implements CommandLineRunner{
 		Vehicle v2 = new Vehicle(null, "blue", "ford");
 		Vehicle v3 = new Vehicle(null, "yellow", "fiat");
 		
+		Driver d1 = new Driver(null, "Carlos");
+		Driver d2 = new Driver(null, "Maria");
+		Driver d3 = new Driver(null, "João");
+		
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3));
+		driverRepository.saveAll(Arrays.asList(d1, d2, d3));
 		
 	}
 	
