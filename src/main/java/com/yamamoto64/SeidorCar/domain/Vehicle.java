@@ -68,4 +68,18 @@ public class Vehicle implements Serializable{
 		Vehicle other = (Vehicle) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Placa: ");
+		builder.append(id);
+		builder.append(", color=");
+		builder.append(color);
+		builder.append(", brand=");
+		builder.append(brand);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

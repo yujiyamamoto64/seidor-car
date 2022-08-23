@@ -1,5 +1,6 @@
 package com.yamamoto64.SeidorCar;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.yamamoto64.SeidorCar.domain.Driver;
+import com.yamamoto64.SeidorCar.domain.Rent;
 import com.yamamoto64.SeidorCar.domain.Vehicle;
 import com.yamamoto64.SeidorCar.repositories.DriverRepository;
+import com.yamamoto64.SeidorCar.repositories.RentRepository;
 import com.yamamoto64.SeidorCar.repositories.VehicleRepository;
 
 @SpringBootApplication
@@ -24,6 +27,9 @@ public class SeidorCarApplication implements CommandLineRunner{
 	
 	@Autowired
 	private DriverRepository driverRepository;
+	
+	@Autowired
+	private RentRepository rentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -39,6 +45,11 @@ public class SeidorCarApplication implements CommandLineRunner{
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3));
 		driverRepository.saveAll(Arrays.asList(d1, d2, d3));
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Rent r1 = new Rent(null, sdf.parse("16/02/2022"), null, d1, v1, "Aluguel de carro");
+		
+		rentRepository.save(r1);
 	}
 	
 	

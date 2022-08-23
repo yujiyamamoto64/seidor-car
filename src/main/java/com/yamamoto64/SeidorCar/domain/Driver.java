@@ -58,4 +58,13 @@ public class Driver implements Serializable{
 		Driver other = (Driver) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Driver [name=");
+		builder.append(name);
+		builder.append("]");
+		return builder.toString();
+	}
 }
