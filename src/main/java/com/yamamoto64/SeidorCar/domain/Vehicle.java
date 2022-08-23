@@ -14,26 +14,26 @@ public class Vehicle implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long placa;
 	private String color;
 	private String brand;
 	
 	public Vehicle () {
 	}
 
-	public Vehicle(Long id, String color, String brand) {
+	public Vehicle(Long placa, String color, String brand) {
 		super();
-		this.id = id;
+		this.placa = placa;
 		this.color = color;
 		this.brand = brand;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getPlaca() {
+		return placa;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPlaca(Long placa) {
+		this.placa = placa;
 	}
 
 	public String getColor() {
@@ -54,7 +54,7 @@ public class Vehicle implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(placa);
 	}
 
 	@Override
@@ -66,14 +66,14 @@ public class Vehicle implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Vehicle other = (Vehicle) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(placa, other.placa);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[Placa: ");
-		builder.append(id);
+		builder.append(placa);
 		builder.append(", color=");
 		builder.append(color);
 		builder.append(", brand=");

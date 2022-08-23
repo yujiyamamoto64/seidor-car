@@ -27,8 +27,8 @@ public class VehicleResource {
 	private VehicleService vehicleService;
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update (@RequestBody Vehicle obj, @PathVariable Long id) {
-		obj.setId(id);
+	public ResponseEntity<Void> update (@RequestBody Vehicle obj, @PathVariable Long placa) {
+		obj.setPlaca(placa);
 		obj = vehicleService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
@@ -51,7 +51,7 @@ public class VehicleResource {
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
-				.buildAndExpand(obj.getId())
+				.buildAndExpand(obj.getPlaca())
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}

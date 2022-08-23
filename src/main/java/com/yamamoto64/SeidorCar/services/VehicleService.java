@@ -16,7 +16,7 @@ public class VehicleService {
 	private VehicleRepository vehicleRepository;
 	
 	public Vehicle update(Vehicle obj) {
-		Vehicle newObj = findById(obj.getId()).get();
+		Vehicle newObj = findById(obj.getPlaca()).get();
 		updateData(newObj, obj);
 		return vehicleRepository.save(newObj);
 	}
@@ -37,7 +37,7 @@ public class VehicleService {
 	}
 	
 	public Vehicle insert(Vehicle obj) {
-		obj.setId(null);
+		obj.setPlaca(null);
 		obj = vehicleRepository.save(obj);
 		return obj;
 	}
