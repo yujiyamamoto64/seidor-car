@@ -47,7 +47,7 @@ public class SeidorCarApplication implements CommandLineRunner{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Rent r1 = new Rent(null, sdf.parse("16/02/2022"), null, d1, v1, "Aluguel de carro");
+		Rent r1 = new Rent(null, sdf.parse("16/02/2022"), sdf.parse("17/02/2022"), d1, v1, "Aluguel de carro");
 		
 		rentRepository.save(r1);
 	}

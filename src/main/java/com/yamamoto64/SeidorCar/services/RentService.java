@@ -18,11 +18,11 @@ public class RentService {
 
 	public boolean isVehicleAvailable(Rent obj) {
 		for (Rent contract : findAll()) {
-			if (obj.getVehicle().equals(contract.getVehicle()) 
+			if (obj.getVehicle().getPlaca().equals(contract.getVehicle().getPlaca()) 
 					&& contract.getLastDate() == null) {
 				return false;
 			}
-			if (obj.getVehicle().equals(contract.getVehicle())
+			if (obj.getVehicle().getPlaca().equals(contract.getVehicle().getPlaca())
 					&& obj.getInitialDate().compareTo(contract.getLastDate()) < 0) {
 				return false;
 			}
@@ -32,11 +32,11 @@ public class RentService {
 	
 	private boolean isDriverAbaiable(Rent obj) {
 		for (Rent contract : findAll()) {
-			if (obj.getDriver().equals(contract.getDriver()) 
+			if (obj.getDriver().getId().equals(contract.getDriver().getId()) 
 					&& contract.getLastDate() == null) {
 				return false;
 			}
-			if (obj.getDriver().equals(contract.getDriver())
+			if (obj.getDriver().getId().equals(contract.getDriver().getId())
 					&& obj.getInitialDate().compareTo(contract.getLastDate()) < 0) {
 				return false;
 			}
