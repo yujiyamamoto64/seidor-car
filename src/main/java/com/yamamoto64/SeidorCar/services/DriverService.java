@@ -14,7 +14,14 @@ public class DriverService {
 	@Autowired
 	private DriverRepository driverRepository;
 	
+	public Driver insert(Driver obj) {
+		obj.setId(null);
+		obj = driverRepository.save(obj);
+		return obj;
+	}
+	
 	public List<Driver> findAll() {
 		return driverRepository.findAll();
 	}
+	
 }

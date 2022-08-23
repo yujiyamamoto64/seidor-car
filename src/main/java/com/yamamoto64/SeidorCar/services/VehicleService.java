@@ -13,6 +13,12 @@ public class VehicleService {
 	
 	@Autowired
 	private VehicleRepository vehicleRepository;
+	
+	public Vehicle insert(Vehicle obj) {
+		obj.setId(null);
+		obj = vehicleRepository.save(obj);
+		return obj;
+	}
 
 	public List<Vehicle> findAll() {
 		return vehicleRepository.findAll();
