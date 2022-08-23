@@ -62,9 +62,12 @@ public class Driver implements Serializable{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Driver [name=");
+		builder.append("[id=");
+		builder.append(id);
+		builder.append(", name=");
 		builder.append(name);
 		builder.append("]");
 		return builder.toString();
 	}
+
 }

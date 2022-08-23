@@ -28,19 +28,34 @@ public class RentService {
 			}
 		}
 		return true;
-
+	}
+	
+	private boolean isDriverAbaiable(Rent obj) {
+		for (Rent contract : findAll()) {
+			if (obj.getDriver().equals(contract.getDriver()) 
+					&& contract.getLastDate() == null) {
+				return false;
+			}
+			if (obj.getDriver().equals(contract.getDriver())
+					&& obj.getInitialDate().compareTo(contract.getLastDate()) < 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public Rent insert(Rent obj) {
-
-		if (isVehicleAvailable(obj)) {
+		if (isVehicleAvailable(obj) && isDriverAbaiable(obj)) {
 			obj.setId(null);
 			obj = rentRepository.save(obj);
 			return obj;
 		} else {
-			throw new RentException("O veiculo solicitado " + obj.getVehicle() + " já está sendo utilizado");
+			throw new RentException("Ou o veículo solicitado " 
+		+ obj.getVehicle() 
+		+ " já está sendo utilizado, ou o motorista " 
+		+ obj.getDriver() 
+		+ " já está alugando um veículo");
 		}
-
 	}
 
 	public Rent update(Rent obj) {
