@@ -1,6 +1,7 @@
 package com.yamamoto64.SeidorCar.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,11 @@ public class VehicleService {
 	
 	@Autowired
 	private VehicleRepository vehicleRepository;
+	
+	public Optional<Vehicle> findById(Long id) {
+		Optional<Vehicle> obj = vehicleRepository.findById(id);
+		return obj;		
+	}
 	
 	public Vehicle insert(Vehicle obj) {
 		obj.setId(null);

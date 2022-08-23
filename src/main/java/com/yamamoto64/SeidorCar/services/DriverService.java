@@ -1,6 +1,7 @@
 package com.yamamoto64.SeidorCar.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,11 @@ public class DriverService {
 
 	@Autowired
 	private DriverRepository driverRepository;
+	
+	public Optional<Driver> findById(Long id) {
+		Optional<Driver> obj = driverRepository.findById(id);
+		return obj;
+	}
 	
 	public Driver insert(Driver obj) {
 		obj.setId(null);

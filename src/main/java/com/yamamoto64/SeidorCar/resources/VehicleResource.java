@@ -2,10 +2,12 @@ package com.yamamoto64.SeidorCar.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,12 @@ public class VehicleResource {
 	
 	@Autowired
 	private VehicleService vehicleService;
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<?> findById(@PathVariable Long id) {
+		Optional<Vehicle> obj = vehicleService.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
 
 	@PostMapping
 	public ResponseEntity<Vehicle> insert(@RequestBody Vehicle obj) {
