@@ -15,6 +15,17 @@ public class DriverService {
 	@Autowired
 	private DriverRepository driverRepository;
 	
+	public Driver update (Driver obj) {
+		Driver newObj = findById(obj.getId()).get();
+		updateData(newObj, obj);
+		return driverRepository.save(obj);
+	}
+	
+	private void updateData(Driver newObj, Driver obj) {
+		newObj.setName(obj.getName());
+		
+	}
+
 	public Optional<Driver> findById(Long id) {
 		Optional<Driver> obj = driverRepository.findById(id);
 		return obj;

@@ -15,6 +15,17 @@ public class VehicleService {
 	@Autowired
 	private VehicleRepository vehicleRepository;
 	
+	public Vehicle update(Vehicle obj) {
+		Vehicle newObj = findById(obj.getId()).get();
+		updateData(newObj, obj);
+		return vehicleRepository.save(newObj);
+	}
+	
+	private void updateData(Vehicle newObj, Vehicle obj) {
+		newObj.setColor(obj.getColor());
+		newObj.setBrand(obj.getBrand());
+	}
+
 	public Optional<Vehicle> findById(Long id) {
 		Optional<Vehicle> obj = vehicleRepository.findById(id);
 		return obj;		
