@@ -18,7 +18,7 @@ public class RentService {
 
 	public boolean isVehicleAvailable(Rent obj) {
 		for (Rent contract : findAll()) {
-			if (obj.getVehicle().getPlaca().equals(contract.getVehicle().getPlaca()) 
+			if (obj.getVehicle().getPlaca().equals(contract.getVehicle().getPlaca())
 					&& contract.getLastDate() == null) {
 				return false;
 			}
@@ -29,11 +29,10 @@ public class RentService {
 		}
 		return true;
 	}
-	
+
 	private boolean isDriverAbaiable(Rent obj) {
 		for (Rent contract : findAll()) {
-			if (obj.getDriver().getId().equals(contract.getDriver().getId()) 
-					&& contract.getLastDate() == null) {
+			if (obj.getDriver().getId().equals(contract.getDriver().getId()) && contract.getLastDate() == null) {
 				return false;
 			}
 			if (obj.getDriver().getId().equals(contract.getDriver().getId())
@@ -50,18 +49,20 @@ public class RentService {
 			obj = rentRepository.save(obj);
 			return obj;
 		} else {
-			throw new RentException("Ou o veículo solicitado " 
-		+ obj.getVehicle() 
-		+ " já está sendo utilizado, ou o motorista " 
-		+ obj.getDriver() 
-		+ " já está alugando um veículo");
+			throw new RentException("Ou o veículo solicitado " + obj.getVehicle()
+					+ " já está sendo utilizado, ou o motorista " + obj.getDriver() + " já está alugando um veículo");
 		}
 	}
 
 	public Rent update(Rent obj) {
 		Rent newObj = findById(obj.getId()).get();
+		if (newObj.getLastDate().equals(obj.getLastDate()) 
+				|| obj.getLastDate().compareTo(newObj.getLastDate()) < 0 ) {
+			throw new RentException("A data de devolução deve ser diferente da data inicial ou maior.");
+		} 
 		updateData(newObj, obj);
 		return rentRepository.save(newObj);
+		
 	}
 
 	private void updateData(Rent newObj, Rent obj) {
